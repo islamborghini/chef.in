@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load social_share %}
+{% block content %}
+<div class="container my-5">
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ recipies.image.url }}" class="img-fluid rounded-start" alt="{{ recipies.name }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title text-center">{{ recipies.name }}</h3>
+                    <p class="card-text text-justify">{{ recipies.description }}</p>
+                    <hr>
+                    
+                    {% if ingredients %}
+                    <h5>Ingredients</h5>
+                    <ul>
+                        {% for ingredient in ingredients %}
+                        <li>{{ ingredient }}</li>
+                        {% endfor %}
+                    </ul>
+                    <hr>
+                    {% endif %}
+                    
+                    {% if instructions %}
+                    <h5>Instructions</h5>
+                    <ol>
+                        {% for step in instructions %}
+                        <li>{{ step }}</li>
+                        {% endfor %}
+                    </ol>
+                    <hr>
+                    <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+                    <br/>
+                    <br/>
+                    {% endif %}
+
+                    {%post_to_twitter "I want to share this recipe with you!" object_or_url "Twitter"%}
+                    {% send_email object.title "I want to share this recipe with you!" object_or_url "Share via email" %}
+                    {% post_to_telegram "I want to share this recipe with you!" object_or_url "Telegram"%}
+                    {% post_to_whatsapp "I want to share this recipe with you!" object_or_url "Share via WhatsApp" %}
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
