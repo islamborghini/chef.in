@@ -47,7 +47,7 @@ Follow the prompts to set up a username, email, and password.
 Troubleshooting Tips:<br>
 If you encounter errors related to dependencies, try updating them or reinstalling with:<br/>
 <code>pip install --force-reinstall -r requirements.txt</code>
-<br><br>
+<br>
 <h1>Development process insights:</h1><br/>
 <h3>I chose to develop the project based on the criteria given on the Notion page:</h3>
 <ol>
