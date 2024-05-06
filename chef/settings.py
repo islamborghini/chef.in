@@ -1,6 +1,14 @@
 
 from pathlib import Path
+#from dotenv import load_dotenv
 import os
+
+#load_dotenv()
+
+#EDAMAM_APP_ID = os.getenv('EDAMAM_APP_ID')
+#EDAMAM_APP_KEY = os.getenv('EDAMAM_APP_KEY')
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

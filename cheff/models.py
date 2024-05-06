@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Categories of recipies
 class Category(models.Model):
     name = models.CharField(max_length=50)

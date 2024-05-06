@@ -2,21 +2,29 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Recipies
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from .edamam_client import EdamamClient
 from .models import Category
 from django.db.models import Q
 import logging
 
-
 def home(request):
-	recipies = Recipies.objects.all()
-	return render(request, 'home.html', {'recipies': recipies})
+    recipies = Recipies.objects.all()
+    return render(request, 'home.html', {'recipies': recipies})
+
 
 def recipy_detail(request, pk):
     recipy = get_object_or_404(Recipies, pk=pk)
+    edamam_client = EdamamClient()
+    title = recipy.name
+    ingredients = recipy.get_ingredients_list()
+    analysis_result = edamam_client.analyze_recipe(title, ingredients)
+    
     return render(request, 'recipy.html', {
         'recipies': recipy,
         'ingredients': recipy.get_ingredients_list(),
-        'instructions': recipy.get_instructions_list()
+        'instructions': recipy.get_instructions_list(),
+        'analysis': analysis_result
+
     })
 
 
