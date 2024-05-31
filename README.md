@@ -19,11 +19,11 @@
 <h2 id="Project-Overview">Project Overview </h2>
 
 <p>Chef.in is a platform where users can explore a variety of recipes, add their own recipes, and manage their favorite ones. The application leverages Django for the backend and Bootstrap for a responsive, visually appealing frontend.</p>
-<br><br>
+<br>
 <h2 id="Motivation">Motivation</h2>
 
 <p>The motivation behind Chef.in is to create a community-driven space where food enthusiasts can easily find, share, and organize recipes. Whether you're a professional chef or a home cook, Chef.in aims to make recipe management straightforward and enjoyable.</p>
-<br><br>
+<br>
 <h2 id="Getting-Started">Getting Started</h2>
 
 <p>To get started with Chef.in, follow the steps below to set up the project locally on your machine.</p>
@@ -35,7 +35,7 @@
 <li>Python 3.x</li>
 <li>pip (Python package installer)</li>
 </ul>
-<h2 id="Running-the-Project-Locally">Running the Project Locally: </h2><br/>
+<h2 id="Running-the-Project-Locally">Running the Project Locally: </h2>
 <ol>
 <li>Navigate to the desired directory on your machine.
 <li>Clone the project using the command below:
