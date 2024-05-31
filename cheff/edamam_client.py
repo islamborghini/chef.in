@@ -1,9 +1,10 @@
 # edamam_client.py
 import os
 import requests
+from decouple import config
 # Load environment variables
-EDAMAM_APP_ID="8a2182d7"
-EDAMAM_APP_KEY="38068d46f9afb422b2b3bc532841262d"
+EDAMAM_APP_ID=config('EDAMAM_APP_ID')
+EDAMAM_APP_KEY=config('EDAMAM_APP_KEY')
 
 class EdamamClient:
     BASE_URL = "https://api.edamam.com"
