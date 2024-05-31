@@ -100,9 +100,9 @@ If you encounter errors related to dependencies, try updating them or reinstalli
 <p>We welcome contributions to improve Chef.in! To contribute:</p>
 <ol>
 <li>Fork the Project</li>
-<li>Create your Feature Branch (git checkout -b feature/AmazingFeature)</li>
-<li>Commit your Changes (git commit -m 'Add some AmazingFeature')</li>
-<li>Push to the Branch (git push origin feature/AmazingFeature)</li>
+<li>Create your Feature Branch <code>git checkout -b feature/AmazingFeature</code></li>
+<li>Commit your Changes  <code>git commit -m 'Add some AmazingFeature')</code></li>
+<li>Push to the Branch  <code>git push origin feature/AmazingFeature)</code></li>
 <li>Open a Pull Request</li>
 <p>Please ensure your pull request adheres to the project's coding standards and includes relevant tests and documentation.</p>
 </ol>
