@@ -1,0 +1,2 @@
+decouple==0.0.7
+directory-tree==0.0.4
