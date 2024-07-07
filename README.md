@@ -84,6 +84,8 @@ Follow the prompts to set up a username, email, and password.
 Troubleshooting Tips:<br>
 If you encounter errors related to dependencies, try updating them or reinstalling with:<br/>
 <code>pip install --force-reinstall -r requirements.txt</code>
+or
+<code>python -m pip install -r requirements.txt</code>
 <br>
 
 <h2 id="Demo">Demo:</h2>
