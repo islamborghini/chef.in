@@ -13,6 +13,6 @@ def display_tree(path, indent=0):
 
 # Main Method
 if __name__ == '__main__':
-    tree_str = display_tree("/Users/islam/chef.in")
+    tree_str = display_tree("/Users/islam/Documents/chef.in/")
     with open("directory_tree.txt", "w") as file:
         file.write(tree_str)

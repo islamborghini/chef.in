@@ -12,6 +12,7 @@ def home(request):
     recipies = Recipies.objects.all()
     return render(request, 'home.html', {'recipies': recipies})
 
+
 def recipy_detail(request, pk):
     # Retrieve the recipe by primary key or return a 404 if not found
     recipy = get_object_or_404(Recipies, pk=pk)
@@ -20,7 +21,6 @@ def recipy_detail(request, pk):
     ingredients = recipy.get_ingredients_list()
     # Analyze the recipe using the Edamam API
     analysis_result = edamam_client.analyze_recipe(title, ingredients)
-    
     return render(request, 'recipy.html', {
         'recipies': recipy,
         'ingredients': recipy.get_ingredients_list(),

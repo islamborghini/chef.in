@@ -1,13 +1,9 @@
-
 from pathlib import Path
-#from dotenv import load_dotenv
 import os
-
+from decouple import config
 #load_dotenv()
 
-#EDAMAM_APP_ID = os.getenv('EDAMAM_APP_ID')
-#EDAMAM_APP_KEY = os.getenv('EDAMAM_APP_KEY')
-
+DB_PASS = config('DB_PASSWORD_YO')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -74,9 +70,17 @@ WSGI_APPLICATION = 'chef.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    #'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': BASE_DIR / 'db.sqlite3',
+   # }
+     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'railway',
+        'USER':'postgres',
+        'PASSWORD':DB_PASS,
+        'HOST':'roundhouse.proxy.rlwy.net',
+        'PORT':'12844'
     }
 }
 
