@@ -90,11 +90,11 @@ or
 
 <h2 id="Demo">Demo:</h2>
  
-![image](https://github.com/islamborghini/chef.in/assets/82131413/5d78b578-6dbb-43d6-b9f2-0f9b37eaf79a) <br>
-![image](https://github.com/islamborghini/chef.in/assets/82131413/9cef8c3f-728b-4f2e-be29-d0d4ccd49d46) <br>
-![image](https://github.com/islamborghini/chef.in/assets/82131413/e89ce3ed-54a4-40b3-96c3-dddacd9eb35e) <br>
-![image](https://github.com/islamborghini/chef.in/assets/82131413/1c118f64-bff8-444f-a859-fb13443b31c2) <br>
-![image](https://github.com/islamborghini/chef.in/assets/82131413/1b150ff8-4dab-4db8-9efd-6613649e128d) <br>
+![image](https://github.com/islamborghini/chef.in/assets/82131413/1aa607f1-e736-483d-bb65-75fe5c38c83e) <br>
+![image](https://github.com/islamborghini/chef.in/assets/82131413/0a287174-76bf-4402-9800-616c70af8197) <br>
+![image](https://github.com/islamborghini/chef.in/assets/82131413/0e75f41b-b740-4cbd-b032-429512031ada)<br>
+![image](https://github.com/islamborghini/chef.in/assets/82131413/d651b4e9-d5b8-4e78-9328-6b03cdfdd279)<br>
+
 
 
 <h2 id = "Further-Development-and-Contribution-Guidelines">Further Development and Contribution Guidelines</h2>
