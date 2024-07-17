@@ -5,12 +5,14 @@
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4">
-                    <img src="{{ recipies.image.url }}" class="img-fluid rounded-start" alt="{{ recipies.name }}">
+                <img src="{{ recipies.image.url }}" class="img-fluid rounded-start" alt="{{ recipies.name }}">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h3 class="card-title text-center">{{ recipies.name }}</h3>
                     <p class="card-text text-center">{{ recipies.description }}</p>
+                    <p class="card-text text-center"> Last ratings:
+                        
                     <hr>
 
                     {% if ingredients %}
@@ -40,17 +42,19 @@
                         <li>Fat: {{ analysis.totalNutrients.FAT.quantity|floatformat:2 }} {{ analysis.totalNutrients.FAT.unit }}</li>
                         <li>Protein: {{ analysis.totalNutrients.PROCNT.quantity|floatformat:2 }} {{ analysis.totalNutrients.PROCNT.unit }}</li>
                         <li>Carbohydrates: {{ analysis.totalNutrients.CHOCDF.quantity|floatformat:2 }} {{ analysis.totalNutrients.CHOCDF.unit }}</li>
-                        <!-- Add more nutrients as needed -->
                     </ul>
                     <hr>
                     {% endif %}
-                    {%post_to_twitter "I want to share this recipe with you!" object_or_url "Post on Twitter"%}
+                    
+                    {% post_to_twitter "I want to share this recipe with you!" object_or_url "Post on Twitter" %}
                     {% send_email object.title "I want to share this recipe with you!" object_or_url "Share via email" %}
-                    {% post_to_telegram "I want to share this recipe with you!" object_or_url "Send on Telegram"%}
+                    {% post_to_telegram "I want to share this recipe with you!" object_or_url "Send on Telegram" %}
                     {% post_to_whatsapp "I want to share this recipe with you!" object_or_url "Share via WhatsApp" %}
                     <br/><br/>
 
                     <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+                   
+                    
                 </div>
             </div>
         </div>

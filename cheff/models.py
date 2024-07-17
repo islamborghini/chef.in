@@ -10,6 +10,7 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'categories'  # Correct pluralization for admin interface
 
+
 # All of the recipes
 class Recipies(models.Model):
     name = models.CharField(max_length=50)
@@ -32,3 +33,8 @@ class Recipies(models.Model):
 
     class Meta:
         verbose_name_plural = 'recipies'  # Correct pluralization for admin interface
+
+class Ratings(models.Model):
+    name = models.ForeignKey(Recipies,on_delete=models.CASCADE )
+    rating  = models.CharField(max_length=1)
+    
