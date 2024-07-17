@@ -12,7 +12,11 @@
                     <h3 class="card-title text-center">{{ recipies.name }}</h3>
                     <p class="card-text text-center">{{ recipies.description }}</p>
                     <p class="card-text text-center"> Last ratings:
-                        
+                        <ul>
+                            {% for rating in ratings %}
+                            <li>{{ rating.rating }} stars</li>
+                            {% endfor %}
+                        </ul>
                     <hr>
 
                     {% if ingredients %}
