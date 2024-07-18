@@ -11,7 +11,12 @@
                 <div class="card-body">
                     <h3 class="card-title text-center">{{ recipies.name }}</h3>
                     <p class="card-text text-center">{{ recipies.description }}</p>
-                    <p class="card-text text-center"> Average Rating: {{ average_rating }}</p>
+                    {%if average_rating != -1 %}
+                    <p class="card-text text-center">Rating: {{ average_rating }}</p>
+                    
+                    {%else%}
+                    <p class="card-text text-center">No ratings</p>
+                    {%endif%}
                     <hr>
 
                     {% if ingredients %}
