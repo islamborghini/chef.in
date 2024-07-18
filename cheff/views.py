@@ -21,7 +21,10 @@ def recipy_detail(request, pk):
     title = recipy.name
     ingredients = recipy.get_ingredients_list()
     ratings = Ratings.objects.filter(name=recipy)
-        
+    
+    # Calculate the average rating
+    average_rating = round(ratings.aggregate(Avg('rating'))['rating__avg'],2)
+    
     # Analyze the recipe using the Edamam API
     analysis_result = edamam_client.analyze_recipe(title, ingredients)
     
@@ -30,8 +33,10 @@ def recipy_detail(request, pk):
         'ingredients': recipy.get_ingredients_list(),
         'instructions': recipy.get_instructions_list(),
         'analysis': analysis_result,
-        'ratings': ratings
+        'ratings': ratings,
+        'average_rating': average_rating,
     })
+
 
 def search(request):
     # Check if the search form was submitted
