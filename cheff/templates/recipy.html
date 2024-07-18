@@ -56,18 +56,20 @@
                     <br/><br/>
 
                     <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+                    <br><br>
+                    <h3>Rating: {{ average_rating }}</h3>
+                    <br>
                     <form action="{% url 'recipy_detail' recipies.pk %}" method="post">
                         {% csrf_token %}
-                        {{ form.as_p }}
+                        {% for i in "12345" %}
+                            <label>
+                                <input type="radio" name="rating" value="{{ i }}"> {{ i }}
+                            </label> 
+                        {% endfor %}
+                        
+                        <br>
                         <button type="submit" class="btn btn-primary">Submit Rating</button>
                     </form>
-                    <hr>
-                    <h5>Ratings</h5>
-                    <ul>
-                        {% for rating in ratings %}
-                        <li>{{ rating.rating }} stars</li>
-                        {% endfor %}
-                    </ul>
                 </div>
             </div>
         </div>
