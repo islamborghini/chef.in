@@ -36,5 +36,5 @@ class Recipies(models.Model):
 
 class Ratings(models.Model):
     name = models.ForeignKey(Recipies,on_delete=models.CASCADE )
-    rating  = models.FloatField(max_length=1)
+    rating  = models.IntegerField()
 

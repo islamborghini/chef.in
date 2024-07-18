@@ -11,12 +11,11 @@
                 <div class="card-body">
                     <h3 class="card-title text-center">{{ recipies.name }}</h3>
                     <p class="card-text text-center">{{ recipies.description }}</p>
-                    {%if average_rating != -1 %}
+                    {% if average_rating != -1 %}
                     <p class="card-text text-center">Rating: {{ average_rating }}</p>
-                    
-                    {%else%}
+                    {% else %}
                     <p class="card-text text-center">No ratings</p>
-                    {%endif%}
+                    {% endif %}
                     <hr>
 
                     {% if ingredients %}
@@ -57,9 +56,18 @@
                     <br/><br/>
 
                     <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
-                    
+                    <form action="{% url 'recipy_detail' recipies.pk %}" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Submit Rating</button>
+                    </form>
                     <hr>
-                    
+                    <h5>Ratings</h5>
+                    <ul>
+                        {% for rating in ratings %}
+                        <li>{{ rating.rating }} stars</li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>

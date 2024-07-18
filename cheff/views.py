@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from .edamam_client import EdamamClient
 from .models import Category
 from django.db.models import Q
+from .forms import RatingForm
 import logging
 
 def home(request):
@@ -14,30 +15,44 @@ def home(request):
     return render(request, 'home.html', {'recipies': recipies})
 
 
+
+
+from .forms import RatingForm
+
 def recipy_detail(request, pk):
-    # Retrieve the recipe by primary key or return a 404 if not found
     recipy = get_object_or_404(Recipies, pk=pk)
     edamam_client = EdamamClient()
     title = recipy.name
     ingredients = recipy.get_ingredients_list()
     ratings = Ratings.objects.filter(name=recipy)
 
-    if ratings:    
-    # Calculate the average rating
-        average_rating = round(ratings.aggregate(Avg('rating'))['rating__avg'],2)
+    if ratings.exists():
+        average_rating = round(ratings.aggregate(Avg('rating'))['rating__avg'], 2)
     else:
         average_rating = -1
-    
-    # Analyze the recipe using the Edamam API
+
     analysis_result = edamam_client.analyze_recipe(title, ingredients)
-    
+
+    if request.method == 'POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            new_rating = form.save(commit=False)
+            new_rating.name = recipy
+            new_rating.save()
+            return redirect('recipy_detail', pk=recipy.pk)
+    else:
+        form = RatingForm()
+
     return render(request, 'recipy.html', {
         'recipies': recipy,
         'ingredients': recipy.get_ingredients_list(),
         'instructions': recipy.get_instructions_list(),
         'analysis': analysis_result,
         'average_rating': average_rating,
+        'form': form,
+        'ratings': ratings,
     })
+
 
 
 def search(request):
