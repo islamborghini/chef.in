@@ -1,78 +1,114 @@
 {% extends 'base.html' %}
 {% load social_share %}
 {% block content %}
-<div class="container my-5">
-    <div class="card mb-3">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="{{ recipies.image.url }}" class="img-fluid rounded-start" alt="{{ recipies.name }}">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h3 class="card-title text-center">{{ recipies.name }}</h3>
-                    <p class="card-text text-center">{{ recipies.description }}</p>
-                    {% if average_rating != -1 %}
-                    <p class="card-text text-center">Rating: {{ average_rating }}</p>
-                    {% else %}
-                    <p class="card-text text-center">No ratings</p>
-                    {% endif %}
-                    <hr>
+<style>
+    .rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: start;
+    }
+    
+    .rating input {
+      display: none;
+    }
+    
+    .rating label {
+      font-size: 2em;
+      color: #FFD700;
+      cursor: pointer;
+    }
+    
+    .rating label::before {
+      content: "☆";
+    }
+    
+    .rating input:checked ~ label::before,
+    .rating label:hover ~ label::before,
+    .rating label:hover::before {
+      content: "★";
+    }
+    </style>
 
-                    {% if ingredients %}
-                    <h5>Ingredients</h5>
-                    <ul>
-                        {% for ingredient in ingredients %}
-                        <li>{{ ingredient }}</li>
-                        {% endfor %}
-                    </ul>
-                    <hr>
-                    {% endif %}
-
-                    {% if instructions %}
-                    <h5>Instructions</h5>
-                    <ol>
-                        {% for step in instructions %}
-                        <li>{{ step }}</li>
-                        {% endfor %}
-                    </ol>
-                    <hr>
-                    {% endif %}
-
-                    {% if analysis %}
-                    <h5>Nutrition Information (by EDAMAM)</h5>
-                    <ul>
-                        <li>Total Calories: {{ analysis.calories|floatformat:2 }}</li>
-                        <li>Fat: {{ analysis.totalNutrients.FAT.quantity|floatformat:2 }} {{ analysis.totalNutrients.FAT.unit }}</li>
-                        <li>Protein: {{ analysis.totalNutrients.PROCNT.quantity|floatformat:2 }} {{ analysis.totalNutrients.PROCNT.unit }}</li>
-                        <li>Carbohydrates: {{ analysis.totalNutrients.CHOCDF.quantity|floatformat:2 }} {{ analysis.totalNutrients.CHOCDF.unit }}</li>
-                    </ul>
-                    <hr>
-                    {% endif %}
-                    
-                    {% post_to_twitter "I want to share this recipe with you!" object_or_url "Post on Twitter" %}
-                    {% send_email object.title "I want to share this recipe with you!" object_or_url "Share via email" %}
-                    {% post_to_telegram "I want to share this recipe with you!" object_or_url "Send on Telegram" %}
-                    {% post_to_whatsapp "I want to share this recipe with you!" object_or_url "Share via WhatsApp" %}
-                    <br/><br/>
-
-                    <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
-                    <br><br>
-                    <h3>Rating: {{ average_rating }}</h3>
-                    <br>
-                    <form action="{% url 'recipy_detail' recipies.pk %}" method="post">
-                        {% csrf_token %}
-                        {% for i in "12345" %}
-                            <label>
-                                <input type="radio" name="rating" value="{{ i }}"> {{ i }}
-                            </label> 
-                        {% endfor %}
+    <div class="container my-5">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ recipies.image.url }}" class="img-fluid rounded-start" alt="{{ recipies.name }}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">{{ recipies.name }}</h3>
+                        <p class="card-text text-center">{{ recipies.description }}</p>
+                        {% if average_rating != -1 %}
+                        <p class="card-text text-center">Rating: {{ average_rating }}</p>
+                        {% else %}
+                        <p class="card-text text-center">No ratings</p>
+                        {% endif %}
+                        <hr>
+    
+                        {% if ingredients %}
+                        <h5>Ingredients</h5>
+                        <ul>
+                            {% for ingredient in ingredients %}
+                            <li>{{ ingredient }}</li>
+                            {% endfor %}
+                        </ul>
+                        <hr>
+                        {% endif %}
+    
+                        {% if instructions %}
+                        <h5>Instructions</h5>
+                        <ol>
+                            {% for step in instructions %}
+                            <li>{{ step }}</li>
+                            {% endfor %}
+                        </ol>
+                        <hr>
+                        {% endif %}
+    
+                        {% if analysis %}
+                        <h5>Nutrition Information (by EDAMAM)</h5>
+                        <ul>
+                            <li>Total Calories: {{ analysis.calories|floatformat:2 }}</li>
+                            <li>Fat: {{ analysis.totalNutrients.FAT.quantity|floatformat:2 }} {{ analysis.totalNutrients.FAT.unit }}</li>
+                            <li>Protein: {{ analysis.totalNutrients.PROCNT.quantity|floatformat:2 }} {{ analysis.totalNutrients.PROCNT.unit }}</li>
+                            <li>Carbohydrates: {{ analysis.totalNutrients.CHOCDF.quantity|floatformat:2 }} {{ analysis.totalNutrients.CHOCDF.unit }}</li>
+                        </ul>
+                        <hr>
+                        {% endif %}
                         
+                        {% post_to_twitter "I want to share this recipe with you!" object_or_url "Post on Twitter" %}
+                        {% send_email object.title "I want to share this recipe with you!" object_or_url "Share via email" %}
+                        {% post_to_telegram "I want to share this recipe with you!" object_or_url "Send on Telegram" %}
+                        {% post_to_whatsapp "I want to share this recipe with you!" object_or_url "Share via WhatsApp" %}
+                        <br/><br/>
+    
+                        <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+                        <br><br>
+                        <h3>Rating: {{ average_rating }}</h3>
                         <br>
-                        <button type="submit" class="btn btn-primary">Submit Rating</button>
-                    </form>
+                        <form action="{% url 'recipy_detail' recipies.pk %}" method="post">
+                            {% csrf_token %}
+                            <div class="rating">
+                                {% for i in "54321" %}
+                                    <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}">
+                                    <label for="star{{ i }}" title="{{ i }} stars"></label>
+                                {% endfor %}
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Submit Rating</button>
+                        </form>
+                        <hr>
+                        <h5>Ratings</h5>
+                        <ul>
+                            {% for rating in ratings %}
+                            <li>{{ rating.rating }} stars</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
+    
