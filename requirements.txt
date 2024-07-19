@@ -1,9 +1,14 @@
+asgiref==3.8.1
 certifi==2024.7.4
 charset-normalizer==3.3.2
 directory-tree==0.0.4
+Django==4.2.14
+django-appconf==1.0.6
 idna==3.7
-psycopg==3.2.1
 python-decouple==3.8
+rcssmin==1.1.2
 requests==2.32.3
+rjsmin==1.2.2
+sqlparse==0.5.1
 typing_extensions==4.12.2
 urllib3==2.2.2
