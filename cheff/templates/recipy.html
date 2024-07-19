@@ -85,7 +85,12 @@
     
                         <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
                         <br><br>
-                        <h3>Rating: {{ average_rating }}</h3>
+                        <h3>
+                            {% if average_rating != -1%}
+                            Rating: {{ average_rating }}</h3>
+                            {% else%}
+                            Be first one to rate!
+                            {%endif%}
                         <br>
                         <form action="{% url 'recipy_detail' recipies.pk %}" method="post">
                             {% csrf_token %}
