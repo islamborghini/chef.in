@@ -25,6 +25,9 @@ def recipy_detail(request, pk):
     title = recipy.name
     ingredients = recipy.get_ingredients_list()
     ratings = Ratings.objects.filter(name=recipy)
+    category_id = recipy.category_id
+    category = Category.objects.get(id=category_id)
+    
 
     if ratings.exists():
         average_rating = round(ratings.aggregate(Avg('rating'))['rating__avg'], 2)
@@ -51,6 +54,7 @@ def recipy_detail(request, pk):
         'average_rating': average_rating,
         'form': form,
         'ratings': ratings,
+        'category': category
     })
 
 

@@ -38,6 +38,9 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h3 class="card-title text-center">{{ recipies.name }}</h3>
+                        <h6 class="card-title text-center">{{ recipies.category }}</h6>
+
+
                         <p class="card-text text-center">{{ recipies.description }}</p>
                         {% if average_rating != -1 %}
                         <p class="card-text text-center">Rating: {{ average_rating }}</p>
@@ -103,6 +106,7 @@
                             <br>
                             <button type="submit" class="btn btn-primary">Submit Rating</button>
                         </form>
+                        <!--
                         <hr>
                         <h5>Ratings</h5>
                         <ul>
@@ -110,6 +114,7 @@
                             <li>{{ rating.rating }} stars</li>
                             {% endfor %}
                         </ul>
+                        -->
                     </div>
                 </div>
             </div>
