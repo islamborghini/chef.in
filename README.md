@@ -114,7 +114,7 @@ or
 <li>Django - The web framework used for backend development.</li>
 <li>Bootstrap - For the responsive and aesthetically pleasing frontend.</li>
 <li>PostgreSQL - The database used to contain the recipies</li>
-<li>The open-source community for continuous inspiration and support.</li>
+<li>Railway - The cloud for building, shipping, and monitoring applications</li>
 </ul>
 
 <h2 id = "Useful-Resources">Useful Resources</h2>
