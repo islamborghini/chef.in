@@ -9,19 +9,20 @@ from django.db.models import Q
 from .forms import RatingForm
 import logging
 
+#Retrieve all recipies and rendering the home page
 def home(request):
-    # Retrieve all recipes and render the home page
     recipies = Recipies.objects.all()
     return render(request, 'home.html', {'recipies': recipies})
 
-
-
-
-from .forms import RatingForm
-
+#A different page for every recipe
 def recipy_detail(request, pk):
+    #Getting the id of the recipe by the primary key in the URL
     recipy = get_object_or_404(Recipies, pk=pk)
+
+    #Initializing EdamamAPI client
     edamam_client = EdamamClient()
+
+    #Getting the recipe data
     title = recipy.name
     ingredients = recipy.get_ingredients_list()
     ratings = Ratings.objects.filter(name=recipy)
@@ -29,6 +30,7 @@ def recipy_detail(request, pk):
     category = Category.objects.get(id=category_id)
     
 
+    #Calculating the average rating if it exists
     if ratings.exists():
         average_rating = round(ratings.aggregate(Avg('rating'))['rating__avg'], 2)
     else:
@@ -36,6 +38,7 @@ def recipy_detail(request, pk):
 
     analysis_result = edamam_client.analyze_recipe(title, ingredients)
 
+    #Rating submitting form
     if request.method == 'POST':
         form = RatingForm(request.POST)
         if form.is_valid():
@@ -46,6 +49,7 @@ def recipy_detail(request, pk):
     else:
         form = RatingForm()
 
+    #Rendering the main info about the recipe
     return render(request, 'recipy.html', {
         'recipies': recipy,
         'ingredients': recipy.get_ingredients_list(),

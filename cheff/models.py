@@ -34,6 +34,7 @@ class Recipies(models.Model):
     class Meta:
         verbose_name_plural = 'recipies'  # Correct pluralization for admin interface
 
+#All of the ratings
 class Ratings(models.Model):
     name = models.ForeignKey(Recipies,on_delete=models.CASCADE )
     rating  = models.IntegerField()
